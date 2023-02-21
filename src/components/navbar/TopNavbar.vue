@@ -1,5 +1,7 @@
 <template>
-  <div class="top-navbar d-flex align-center justify-space-between px-15">
+  <div
+    class="top-navbar d-none d-md-flex align-center justify-space-between px-15"
+  >
     <div class="">
       <v-img
         :src="require('@/assets/logo.png')"
@@ -32,7 +34,6 @@
 <script>
 export default {
   name: "TopNavbar",
-  data: () => ({}),
 };
 </script>
 

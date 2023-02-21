@@ -1,7 +1,9 @@
 <template>
   <div>
     <TopNavbar />
-    <div class="main-navbar d-flex align-center justify-space-between px-15">
+    <div
+      class="main-navbar d-none d-md-flex align-center justify-space-between px-15"
+    >
       <div class="">
         <v-img
           :src="require('@/assets/logo_brignoli.png')"
@@ -36,7 +38,7 @@
         </v-card>
       </div>
     </div>
-    <div class="px-15 ml-6 py-3 main-navbar-link">
+    <div class="px-15 ml-6 back-link d-flex align-center">
       <v-icon color="dark">mdi-chevron-left</v-icon>
       <span href="" class="ml-5 text-decoration-underline font-weight-thin"
         >Back</span
@@ -66,16 +68,6 @@ export default {
 .main-navbar {
   background: $primary;
   height: 100px;
-
-  &-link {
-    cursor: pointer;
-    span {
-      color: $dark;
-      font-family: "Raleway";
-      font-size: 16px;
-    }
-  }
-
   &-catalog {
     font-family: "Montserrat";
     font-size: 24px;
@@ -89,6 +81,18 @@ export default {
     font-size: 24px;
   }
 }
+
+.back-link {
+  cursor: pointer;
+  height: 44px;
+  background-color: #fff;
+  span {
+    color: $dark;
+    font-family: "Raleway";
+    font-size: 16px;
+  }
+}
+
 .inactive {
   color: white;
 }
