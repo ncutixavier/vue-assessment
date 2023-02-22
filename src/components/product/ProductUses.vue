@@ -17,7 +17,7 @@
           height="80"
         />
         <div
-          class="my-3 text-uppercase font-weight-thin product-uses-card__title"
+          class="my-3 text-uppercase product-uses-card__title"
         >
           {{ item?.title }}
         </div>

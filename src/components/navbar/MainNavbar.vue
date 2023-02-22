@@ -13,9 +13,7 @@
         />
       </div>
       <div class="d-flex align-center">
-        <div class="text-uppercase font-weight-black main-navbar-catalog mr-3">
-          Catalog
-        </div>
+        <div class="text-uppercase main-navbar-catalog mr-3">Catalog</div>
         <v-card width="600" flat color="primary">
           <v-tabs
             v-model="tab"
@@ -30,19 +28,13 @@
               v-for="item in items"
               :key="item"
               :href="'#' + item"
-              class="main-navbar-tab-item font-weight-thin white--text"
+              class="main-navbar-tab-item white--text"
             >
               {{ item }}
             </v-tab>
           </v-tabs>
         </v-card>
       </div>
-    </div>
-    <div class="px-15 ml-6 back-link d-flex align-center">
-      <v-icon color="dark">mdi-chevron-left</v-icon>
-      <span href="" class="ml-5 text-decoration-underline font-weight-thin"
-        >Back</span
-      >
     </div>
   </div>
 </template>
@@ -52,7 +44,7 @@ import TopNavbar from './TopNavbar';
 export default {
     name: "MainNavbar",
     components: {
-    TopNavbar
+    TopNavbar,
   },
     data: () => ({
     tab: null,
@@ -68,10 +60,12 @@ export default {
 .main-navbar {
   background: $primary;
   height: 100px;
+
   &-catalog {
     font-family: "Montserrat";
     font-size: 24px;
     color: white;
+    font-weight: 700;
   }
 
   &-tab-item {
@@ -79,17 +73,6 @@ export default {
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-  }
-}
-
-.back-link {
-  cursor: pointer;
-  height: 44px;
-  background-color: #fff;
-  span {
-    color: $dark;
-    font-family: "Raleway";
-    font-size: 16px;
   }
 }
 

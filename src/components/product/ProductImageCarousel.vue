@@ -27,7 +27,7 @@
 export default {
   name: "ProductImageCarousel",
   props: {
-    images: Array
+    images: Array,
   },
 
 };

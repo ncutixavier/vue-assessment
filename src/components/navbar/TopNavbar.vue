@@ -19,7 +19,7 @@
             contain
             width="20"
           />
-          <div class="ml-2 text-uppercase font-weight-thin">Log in</div>
+          <div class="ml-2 text-uppercase font-weight-regular">Log in</div>
         </a>
       </div>
       <div>

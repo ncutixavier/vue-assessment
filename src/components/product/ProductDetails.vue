@@ -79,7 +79,7 @@
 import ProductImageCarousel from "./ProductImageCarousel"
 export default {
   components: {
-    ProductImageCarousel
+    ProductImageCarousel,
   },
   data: () => ({
     items: [
@@ -90,7 +90,7 @@ export default {
     ],
     baseColor: '#76784D',
     colors: ["#76784D", "#958F44", "#936D42", "#663D25", "#4A262C", "#522934",
-      "#522C22", "#5F3831", "#836863",],
+      "#522C22", "#5F3831", "#836863"],
 
   }),
   methods: {

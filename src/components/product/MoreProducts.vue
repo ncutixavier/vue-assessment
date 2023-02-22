@@ -100,7 +100,7 @@ export default {
   padding: 20px 0 60px;
 
   &__header {
-    padding: 20px 70px;
+    padding: 20px 70px 30px;
 
     &--btn {
       width: 80px;
@@ -196,6 +196,7 @@ button:focus {
   width: calc((100% - ((var(--count) - 1) * var(--gap))) / var(--count));
   margin-right: var(--gap);
   height: 300px;
+  cursor: pointer;
 }
 
 .item:last-child {
