@@ -1,5 +1,5 @@
 <template>
-  <div class="py-15">
+  <div class="">
     <v-carousel hide-delimiters height="600">
       <template v-slot:prev="{ on, attrs }">
         <v-btn outlined fab color="white" small v-bind="attrs" v-on="on"

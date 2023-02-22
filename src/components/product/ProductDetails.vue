@@ -33,12 +33,13 @@
                 v-for="color in colors"
                 v-bind:key="color"
                 :style="{ backgroundColor: color }"
-                class="product-details-description__color--colors-box my-3 mr-2"
+                class="product-details-description__color--colors-box my-1 mr-2"
               ></div>
               <div
+                @click="handleShowColors"
                 class="ml-2 font-weight-bold product-details-description__color--colors-expand"
               >
-                +83
+                <span>{{ showColors ? "Show less" : "+83" }}</span>
               </div>
             </div>
             <v-card class="product-details-description__auth pa-6" flat tile>
@@ -89,11 +90,22 @@ export default {
       "https://images.unsplash.com/photo-1601276174812-63280a55656e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHBpbGxvd3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     ],
     baseColor: '#76784D',
-    colors: ["#76784D", "#958F44", "#936D42", "#663D25", "#4A262C", "#522934",
+    mainColors: ["#76784D", "#958F44", "#936D42", "#663D25", "#4A262C", "#522934",
       "#522C22", "#5F3831", "#836863"],
-
+    showColors: false,
+colors: [],
   }),
   methods: {
+    handleShowColors() {
+      this.showColors = !this.showColors
+
+      if (this.showColors) {
+        this.generateColors()
+      } else {
+        this.colors = [...this.mainColors]
+      }
+
+    },
     generateColors(n = 83) {
       for (let i = 0; i < n; i++) {
         const red = parseInt(this.baseColor.substr(1, 2), 16);
@@ -108,7 +120,11 @@ export default {
         const hexColor = `#${newRed.toString(16)}${newGreen.toString(16)}${newBlue.toString(16)}`;
         this.colors.push(hexColor);
       }
+      this.colors = [...this.mainColors, ...this.colors]
     },
+  },
+  mounted() {
+    this.colors = [...this.mainColors]
   },
 };
 </script>
@@ -118,7 +134,7 @@ export default {
 
 .product-details {
   background: #f5f5f4;
-  padding: 0 70px;
+  padding: 70px;
 
   &-description {
     display: flex;
@@ -172,6 +188,7 @@ export default {
         }
         &-expand {
           border-bottom: 1px solid;
+          cursor: pointer;
         }
       }
     }
