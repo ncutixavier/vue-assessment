@@ -90,7 +90,7 @@ export default {
   background: linear-gradient(
     180deg,
     rgba(30, 30, 30) 0.47%,
-    rgba(217, 217, 217, 0.1) 10.11%
+    rgba(217, 217, 217, 0.1) 27.11%
   );
   background-blend-mode: multiply;
   transform: rotate(-180deg);

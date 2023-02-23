@@ -11,7 +11,15 @@
 
     <product-details />
     <product-uses />
-    <product-info />
+    <div>
+      <product-info v-if="$vuetify.breakpoint.mdAndUp" />
+      <div v-else>
+        <product-mobile-info />
+        <product-fabric-swatch />
+        <product-gallery />
+        <products-to-view />
+      </div>
+    </div>
     <div>
       <more-products v-if="$vuetify.breakpoint.mdAndUp" />
       <product-helper v-else />
@@ -29,6 +37,10 @@ import MoreProducts from "@/components/product/MoreProducts";
 import Footer from "@/components/footer/Footer.vue";
 import ProductHelper from "@/components/product/mobile/ProductHelper";
 import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
+import ProductMobileInfo from "@/components/product/mobile/ProductMobileInfo";
+import ProductFabricSwatch from "@/components/product/mobile/ProductFabricSwatch";
+import ProductGallery from "@/components/product/mobile/ProductGallery";
+import ProductsToView from "@/components/product/mobile/ProductsToView";
 
 export default {
   name: "HomeView",
@@ -42,6 +54,10 @@ export default {
     Footer,
     ProductHelper,
     MobileNavbar,
+    ProductMobileInfo,
+    ProductFabricSwatch,
+    ProductGallery,
+    ProductsToView,
   },
 };
 </script>

@@ -12,7 +12,7 @@
         <div class="mb-15 px-5">
           <product-image-carousel
             :images="images"
-            :height="300"
+            :height="'300'"
             :showWishlist="true"
           />
         </div>
@@ -47,7 +47,7 @@
     >
       <product-image-carousel
         :images="fabrics"
-        :height="250"
+        :height="'250'"
         :showBottom="false"
       />
       <div class="dark white--text product-description__color-details-text">

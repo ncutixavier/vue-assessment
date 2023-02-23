@@ -2,24 +2,8 @@
   <div class="product-info">
     <v-row no-gutters>
       <v-col cols="12" sm="6" class="pa-0">
-        <div class="product-info-tech">
-          <span class="product-info-tech__title pb-2"
-            >Technical Information</span
-          >
-          <div class="mt-5">
-            <div
-              class="product-info-tech__card"
-              v-for="(item, i) in items"
-              v-bind:key="i"
-            >
-              <div class="font-weight-black product-info-tech__card--text">
-                {{ item?.text }}
-              </div>
-              <div class="font-weight-regular product-info-tech__card--value">
-                {{ item?.value }}
-              </div>
-            </div>
-          </div>
+        <div class="product-tech-info">
+          <product-tech-info :items="items" />
         </div>
       </v-col>
       <v-spacer />
@@ -58,7 +42,12 @@
 </template>
 
 <script>
+import ProductTechInfo from "./product-info/ProductTechInfo";
+
 export default {
+  components: {
+    ProductTechInfo,
+  },
   data() {
     return {
       items: [
@@ -78,35 +67,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.product-tech-info {
+  padding-left: 70px;
+}
+
 .product-info {
   background: #f5f5f4;
   padding: 70px 0;
-
-  &-tech {
-    padding-left: 70px;
-    font-family: "Raleway";
-
-    &__title {
-      border-bottom: 1px solid;
-      font-weight: 700;
-      font-size: 24px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #1e1e1e;
-    }
-
-    &__card {
-      display: flex;
-      border-bottom: 1px solid rgba(30, 30, 30, 0.1);
-      padding: 16px 0;
-      font-size: 16px;
-
-      &--text {
-        width: 60%;
-        font-weight: 700;
-      }
-    }
-  }
 
   &-image {
     position: relative;
