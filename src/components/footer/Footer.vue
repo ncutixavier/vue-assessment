@@ -1,9 +1,15 @@
 <template>
   <div class="footer">
-    <div class="footer-header mb-8 d-flex justify-space-between align-center">
+    <div
+      class="footer-header mb-md-8 d-flex justify-space-between align-center"
+    >
       <div class="">
         <v-img
-          :src="require('@/assets/logo_footer.png')"
+          :src="
+            require(`@/assets/${
+              $vuetify.breakpoint.smAndDown ? `logo_footer_flat` : `logo_footer`
+            }.png`)
+          "
           transition="scale-transition"
           contain
           width="200"
@@ -13,7 +19,12 @@
       <div
         class="footer-header__social d-flex justify-space-between align-center"
       >
-        <a href="" class="white--text footer-header__social--text">Contatti</a>
+        <a
+          href=""
+          v-if="$vuetify.breakpoint.mdAndUp"
+          class="white--text footer-header__social--text"
+          >Contatti</a
+        >
         <a href="" class="text-decoration-none"
           ><v-icon color="white" size="23">mdi-instagram</v-icon></a
         >
@@ -27,6 +38,11 @@
         </a>
       </div>
     </div>
+
+    <div class="footer-header__mobile">
+      <a href="" class="white--text footer-header__social--text">Contatti</a>
+    </div>
+
     <div class="footer-details">
       <div class="footer-details__description">
         <span class="font-weight-thin">
@@ -38,22 +54,24 @@
           livelli.
         </span>
       </div>
-      <footer-details :items="settori" />
-      <footer-details :items="innovazione" />
-      <footer-details :items="responsabilita" />
-      <footer-details :items="carriera" />
+      <footer-details :items="settori" class="footer-details__details-1" />
+      <footer-details :items="innovazione" class="footer-details__details-2" />
+      <footer-details
+        :items="responsabilita"
+        class="footer-details__details-3"
+      />
+      <footer-details :items="carriera" class="footer-details__details-4" />
     </div>
 
     <div class="">
       <Partners />
     </div>
 
-    <div class="d-flex align-center mt-10 footer-details__bottom">
-      <div class="">
+    <div class="d-flex justify-space-between mt-10 footer-details__bottom">
+      <div class="footer-details__bottom--links">
         <router-link to="">Privacy</router-link>
         <router-link to="">Cookie policy</router-link>
       </div>
-      <v-spacer />
       <div class="">
         Martinelli Ginetto S.p.A - C.F. e Partita Iva 03403660164 Cap.Sociale
         10.000.000 I.v. REA: BG – 375519
@@ -122,6 +140,10 @@ export default {
         letter-spacing: 2px;
       }
     }
+
+    &__mobile {
+      display: none;
+    }
   }
 
   &-details {
@@ -141,6 +163,7 @@ export default {
     }
 
     &__bottom {
+      align-items: center;
       div {
         font-family: "Raleway";
         font-style: normal;
@@ -153,6 +176,62 @@ export default {
         a {
           color: #ffffff;
           margin-right: 40px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 20px;
+    &-header {
+      &__social {
+        width: 80px;
+      }
+
+      &__mobile {
+        display: flex;
+        padding: 30px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        margin-bottom: 30px;
+      }
+    }
+
+    &-details {
+      grid-template-columns: auto;
+      grid-template-rows: repeat(3, auto);
+      gap: 40px;
+
+      &__description {
+        grid-row: 1/2;
+        grid-column: 1/3;
+      }
+
+      &__details-1 {
+        grid-row: 2/3;
+        grid-column: 1/2;
+      }
+
+      &__details-2 {
+        grid-row: 2/3;
+        grid-column: 2/3;
+      }
+
+      &__details-3 {
+        grid-row: 3/4;
+        grid-column: 1/2;
+      }
+      &__details-4 {
+        grid-row: 3/4;
+        grid-column: 2/3;
+      }
+
+      &__bottom {
+        flex-direction: column-reverse !important;
+        align-items: flex-start;
+        &--links {
+          padding: 30px 0 20px;
         }
       }
     }

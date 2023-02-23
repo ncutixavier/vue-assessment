@@ -3,7 +3,9 @@
   <div class="product-uses">
     <div class="product-uses-title">Typically used for</div>
 
-    <div class="product-uses-card__container d-flex justify-space-between align-center my-4">
+    <div
+      class="product-uses-card__container d-flex justify-space-between align-center my-4"
+    >
       <div
         class="product-uses-card pa-5"
         v-for="(item, i) in items"
@@ -16,9 +18,7 @@
           width="79"
           height="80"
         />
-        <div
-          class="my-3 text-uppercase product-uses-card__title"
-        >
+        <div class="my-3 text-uppercase product-uses-card__title">
           {{ item?.title }}
         </div>
       </div>
@@ -81,12 +81,13 @@ export default {
 
 @media (max-width: 768px) {
   .product-uses {
-    padding: 30px 10px;
+    padding: 30px 20px;
 
     &-card {
       flex-direction: row;
       justify-content: start;
       width: 100%;
+      border-bottom: 1px solid rgba(30, 30, 30, 0.1);
 
       &__container {
         flex-direction: column;
@@ -96,6 +97,10 @@ export default {
         flex: 0 auto !important;
         margin-right: 20px;
       }
+    }
+
+    &-card:last-child {
+      border: none;
     }
   }
 }

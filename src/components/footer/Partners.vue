@@ -1,5 +1,5 @@
 <template>
-  <div class="partner d-flex justify-space-between align-center">
+  <div class="partner d-flex justify-space-between flex-wrap align-center">
     <div class="partner-image" v-for="i in 5" :key="i">
       <img :src="require(`@/assets/images/partners/partner-${i}.png`)" />
     </div>
@@ -31,6 +31,16 @@ export default {
 
     &:last-child {
       width: auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .partner {
+    &-image {
+      width: 160px;
+      height: 80px;
+      margin-bottom: 30px;
     }
   }
 }

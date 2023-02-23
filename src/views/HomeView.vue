@@ -1,6 +1,7 @@
 <template>
   <div class="">
     <div class="nav">
+      <mobile-navbar v-if="$vuetify.breakpoint.smAndDown" />
       <main-navbar />
     </div>
     <div class="back-link d-flex align-center">
@@ -11,7 +12,10 @@
     <product-details />
     <product-uses />
     <product-info />
-    <more-products />
+    <div>
+      <more-products v-if="$vuetify.breakpoint.mdAndUp" />
+      <product-helper v-else />
+    </div>
     <Footer />
   </div>
 </template>
@@ -23,6 +27,8 @@ import ProductUses from "@/components/product/ProductUses";
 import ProductInfo from "@/components/product/ProductInfo";
 import MoreProducts from "@/components/product/MoreProducts";
 import Footer from "@/components/footer/Footer.vue";
+import ProductHelper from "@/components/product/mobile/ProductHelper";
+import MobileNavbar from "@/components/navbar/mobile/MobileNavbar";
 
 export default {
   name: "HomeView",
@@ -34,6 +40,8 @@ export default {
     ProductInfo,
     MoreProducts,
     Footer,
+    ProductHelper,
+    MobileNavbar,
   },
 };
 </script>
@@ -57,6 +65,12 @@ export default {
     color: $dark;
     font-family: "Raleway";
     font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-link {
+    padding: 0 20px;
   }
 }
 </style>

@@ -1,75 +1,20 @@
 <template>
   <div class="product-details">
     <v-row no-gutters>
-      <v-col cols="12" sm="7">
+      <v-col cols="12" sm="7" v-if="$vuetify.breakpoint.mdAndUp">
         <div class="">
           <product-image-carousel :images="items" />
         </div>
       </v-col>
-      <v-spacer />
       <v-col cols="12" sm="5">
-        <div class="product-details-description pl-md-15">
-          <div class="mb-12">
-            <div class="product-details-description__title mb-3">Canapone</div>
-            <p class="product-details-description__text ml-2">
-              Full-bodied and resistant double-width fabric in 100% linen.
-              Thanks to linen's abrasion resistance and its pleasant feel to the
-              touch.
-            </p>
-            <div
-              class="text-decoration-underline product-details-description__btn ml-2"
-            >
-              See more
-            </div>
-          </div>
-          <div class="product-details-description__color ml-2">
-            <div class="product-details-description__color--title">
-              Color selection
-            </div>
-            <div
-              class="d-flex flex-wrap my-5 align-center product-details-description__color--colors"
-            >
-              <div
-                v-for="color in colors"
-                v-bind:key="color"
-                :style="{ backgroundColor: color }"
-                class="product-details-description__color--colors-box my-1 mr-2"
-              ></div>
-              <div
-                @click="handleShowColors"
-                class="ml-2 font-weight-bold product-details-description__color--colors-expand"
-              >
-                <span>{{ showColors ? "Show less" : "+83" }}</span>
-              </div>
-            </div>
-            <v-card class="product-details-description__auth pa-6" flat tile>
-              <p class="product-details-description__auth--text">
-                To discover personalized products and custom designs log in or
-                sign up
-              </p>
-              <div class="d-flex">
-                <v-btn
-                  color="dark"
-                  outlined
-                  dark
-                  rounded
-                  class="product-details-description__auth--btn"
-                >
-                  Sign up
-                </v-btn>
-                <v-spacer />
-                <v-btn
-                  depressed
-                  color="dark"
-                  dark
-                  rounded
-                  class="product-details-description__auth--btn"
-                >
-                  Log in
-                </v-btn>
-              </div>
-            </v-card>
-          </div>
+        <div class="pl-md-15">
+          <product-description
+            :colors="$vuetify.breakpoint.mdAndUp ? colors : colors.slice(3)"
+            :showColors="showColors"
+            :handleShowColors="handleShowColors"
+            :images="items"
+            :fabrics="fabrics"
+          />
         </div>
       </v-col>
     </v-row>
@@ -78,9 +23,12 @@
 
 <script lang="js">
 import ProductImageCarousel from "./ProductImageCarousel"
+import ProductDescription from "./ProductDescription";
+
 export default {
   components: {
     ProductImageCarousel,
+    ProductDescription,
   },
   data: () => ({
     items: [
@@ -89,22 +37,26 @@ export default {
       "https://images.unsplash.com/photo-1612152668323-b7f49335ebde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHBpbGxvd3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
       "https://images.unsplash.com/photo-1601276174812-63280a55656e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjF8fHBpbGxvd3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
     ],
+    fabrics: [
+      "https://images.pexels.com/photos/7641149/pexels-photo-7641149.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/1420710/pexels-photo-1420710.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/6354084/pexels-photo-6354084.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/3575850/pexels-photo-3575850.jpeg?auto=compress&cs=tinysrgb&w=600",
+    ],
     baseColor: '#76784D',
     mainColors: ["#76784D", "#958F44", "#936D42", "#663D25", "#4A262C", "#522934",
       "#522C22", "#5F3831", "#836863"],
     showColors: false,
-colors: [],
+    colors: [],
   }),
   methods: {
     handleShowColors() {
       this.showColors = !this.showColors
-
       if (this.showColors) {
         this.generateColors()
       } else {
         this.colors = [...this.mainColors]
       }
-
     },
     generateColors(n = 83) {
       for (let i = 0; i < n; i++) {
@@ -135,107 +87,11 @@ colors: [],
 .product-details {
   background: #f5f5f4;
   padding: 70px;
-
-  &-description {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-
-    &__title {
-      font-family: "Bodoni Moda";
-      font-weight: 700;
-      font-size: 56px;
-      color: $dark;
-    }
-
-    &__text {
-      color: rgba(30, 30, 30, 0.75);
-      font-family: "Raleway";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.8;
-      width: 80%;
-    }
-
-    &__btn {
-      font-family: "Raleway";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      color: $dark;
-    }
-
-    &__color {
-      font-family: "Raleway";
-
-      &--title {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 20px;
-        display: flex;
-        align-items: center;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #000000;
-      }
-
-      &--colors {
-        &-box {
-          width: 36px;
-          height: 30px;
-        }
-        &-expand {
-          border-bottom: 1px solid;
-          cursor: pointer;
-        }
-      }
-    }
-
-    &__auth {
-      width: 90%;
-      &--text {
-        color: rgba(30, 30, 30, 0.75);
-        font-family: "Raleway";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        text-align: justify;
-      }
-
-      &--btn {
-        width: 45%;
-        height: 56px !important;
-      }
-      .v-btn {
-        text-transform: none;
-        font-family: "Raleway";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-      }
-    }
-  }
 }
 
 @media (max-width: 768px) {
   .product-details {
-    padding: 0 10px;
-    &-description {
-      &__text {
-        width: 100%;
-      }
-
-      &__auth {
-        width: 100%;
-
-        &--btn {
-          height: 36px;
-        }
-      }
-    }
+    padding: 0;
   }
 }
 </style>

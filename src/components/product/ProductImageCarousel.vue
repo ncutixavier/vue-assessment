@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <v-carousel hide-delimiters height="600">
+    <v-carousel hide-delimiters :height="height">
       <template v-slot:prev="{ on, attrs }">
         <v-btn outlined fab color="white" small v-bind="attrs" v-on="on"
           ><v-icon>mdi-chevron-left</v-icon></v-btn
@@ -17,7 +17,18 @@
         :src="item"
         class="relative"
       >
-        <div class="image-cover"></div>
+        <div class="image-top-cover" v-if="showWishlist">
+          <div class="">
+            <v-img
+              :src="require('@/assets/icons/wishlist.png')"
+              height="20"
+              width="23"
+              contain
+            />
+          </div>
+          <div class="image-top-cover__text">Cutting service available</div>
+        </div>
+        <div class="image-bottom-cover" v-if="showBottom"></div>
       </v-carousel-item>
     </v-carousel>
   </div>
@@ -28,13 +39,50 @@ export default {
   name: "ProductImageCarousel",
   props: {
     images: Array,
+    height: {
+      type: String,
+      default: "600",
+    },
+    showWishlist: Boolean,
+    showBottom: {
+      type: Boolean,
+      default: true,
+    },
   },
 
 };
 </script>
 
-<style>
-.image-cover {
+<style lang="scss">
+.image-top-cover {
+  height: 70px;
+  background: linear-gradient(
+    176.32deg,
+    rgba(41, 45, 50, 0.45) 3.09%,
+    rgba(217, 217, 217, 0) 135.65%
+  );
+  background-blend-mode: multiply;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+
+  &__text {
+    background: rgba(30, 30, 30, 0.75);
+    font-family: "Montserrat";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 195px;
+    height: 25px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #f5f5f4;
+  }
+}
+
+.image-bottom-cover {
   position: absolute;
   bottom: 0;
   height: 100%;
@@ -42,7 +90,7 @@ export default {
   background: linear-gradient(
     180deg,
     rgba(30, 30, 30) 0.47%,
-    rgba(217, 217, 217, 0.1) 17.11%
+    rgba(217, 217, 217, 0.1) 10.11%
   );
   background-blend-mode: multiply;
   transform: rotate(-180deg);
