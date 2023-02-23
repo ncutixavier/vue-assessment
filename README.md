@@ -1,4 +1,4 @@
-[# vue-assessment](https://xavier-home-task.netlify.app/#/)
+# [vue-assessment](https://xavier-home-task.netlify.app/#/)
 
 ## Project setup
 ```
